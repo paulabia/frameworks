@@ -16,9 +16,9 @@ public class UsuarioTest {
 		EntityManager em = emf.createEntityManager();
 		
 		Usuario usu = new Usuario();
-		usu.setNome("Ana");
-		usu.setLogin("ana.siqueira");
-		usu.setSenha("12345");
+		usu.setNome("BIa");
+		usu.setLogin("bia.siqueira");
+		usu.setSenha("1234567");
 		
 		// Iniciando uma transação
 		em.getTransaction().begin();

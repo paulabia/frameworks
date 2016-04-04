@@ -58,6 +58,19 @@
 			<version>1.1.1.Final</version>
 			<scope>provided</scope>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.7</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.7</version>
+		</dependency>
+		
 
 		<!-- DRIVE JDBC MYSQL -->
 
@@ -67,10 +80,10 @@
 			<version>5.1.38</version>
 		</dependency>
 
-		<!-- <dependency> <groupId>com.oracle</groupId> <artifactId>ojdbc14</artifactId> 
-			<version>10.2.0.4.0</version> <scope>runtime</scope> </dependency> -->
-
-
+		<!-- DRIVE JDBC ORACLE
+		<dependency> <groupId>com.oracle</groupId> <artifactId>ojdbc14</artifactId> 
+			<version>10.2.0.4.0</version> <scope>runtime</scope> </dependency>
+			 -->
 
 
 
