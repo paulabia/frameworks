@@ -1,6 +1,13 @@
 package br.com.fabricadoprogramador.entidade;
 
 import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 /**
  * Class no Padrão JavaBean
  * Um Java Bean precisa ser Serializado, conter atributos privados,conter um construtor vazio,  
@@ -9,7 +16,7 @@ import java.io.Serializable;
  *@author Ana Paula Siqueira
  *
  */
-
+@Entity
 public class Usuario implements Serializable{
 	
 	/**
@@ -18,6 +25,10 @@ public class Usuario implements Serializable{
 	 */
 	private static final long serialVersionUID = -6690883986996807051L;
 	
+	@Id
+	@Column(name = "id", unique = true, nullable = false)
+	@SequenceGenerator(name="seq", sequenceName="SEQ_GEN")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq")
 	private Integer id;
 	private String nome;
 	private String login;
