@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ARQUIVO DE CONFIGURAÇÃO DO HIBERNATE -->
 <persistence version="1.0"
 	xmlns="http://java.sun.com/xml/ns/persistence">
 
