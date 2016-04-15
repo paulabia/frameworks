@@ -104,6 +104,29 @@
 			<version>4.1.0.RELEASE</version>
 		</dependency>
 
+		<!-- Biblioteca para Configuracao de Data Source (Configuracao de Conexao 
+			com Banco) org.apache.commons.dbcp.BasicDataSource. -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+		<!-- Framework para Test Unitário -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+		</dependency>
+		<!-- Framework Spring Modulo Controle de Test -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>4.1.0.RELEASE</version>
+		</dependency>
+
+
+
 
 
 

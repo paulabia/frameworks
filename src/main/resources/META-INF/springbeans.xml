@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
+
+	<!-- configuração do EntityManagerFactory para o spring instanciar ele no 
+		JPA -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="persistenceUnitName" value="mySqlBD"></property>
+		<property name="jpaVendorAdapter">
+		<!-- Informando para o spring que a implementação usada do JPA é di Hibernate(EclipseLink ou outras) -->
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<!-- Criar tabelas do banco de dados, setar TRUE -->
+				<property name="generateDdl" value="true"/>
+				<property name="showSql" value="true"/>
+				<property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect"/>
+			</bean>
+
+		</property>
+
+	</bean>
+
+	<beans>
+		<!-- Configuracao do DataSource para conexao com o banco -->
+		<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+			<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+			<property name="url" value="jdbc:mysql://localhost:3306/frameworks" />
+			<property name="username" value="root" />
+			<property name="password" value="" />
+		</bean>
+	</beans>
+
+
+
+</beans>

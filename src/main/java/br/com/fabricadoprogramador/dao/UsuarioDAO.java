@@ -1,14 +1,19 @@
 package br.com.fabricadoprogramador.dao;
 
-import java.util.List;
-
 import br.com.fabricadoprogramador.entidade.Usuario;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-public class UsuarioDAO {
+import org.springframework.stereotype.Repository;
 
+import antlr.collections.List;
+
+@Repository
+public class UsuarioDAO {
+	// Fala p spring injetar o EntityManager
+	@PersistenceContext
 	EntityManager em;
 
 	public UsuarioDAO(EntityManager em) { 
@@ -26,14 +31,14 @@ public class UsuarioDAO {
 	}
 
 	
-	public Usuario buscaPorId(Integer id) {
+	public Usuario buscaPorId(int id) {
 		return em.find(Usuario.class, id);
 
 	}
 
-	public List<Usuario> buscaTodos() {
+	public List buscaTodos() {
 		Query q = em.createQuery("select u from Usuario u"); // Consulta JPQL, linguagem Java para consulta
-		return q.getResultList(); // retorna o resultado em um lista
+		return (List) q.getResultList(); // retorna o resultado em um lista
 
 	}
 
