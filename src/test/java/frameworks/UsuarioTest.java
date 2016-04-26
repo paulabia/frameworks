@@ -22,7 +22,7 @@ public class UsuarioTest {
 		usu.setLogin("bia.siqueira");
 		usu.setSenha("1234567");
 
-		UsuarioDAO usuarioDao = new UsuarioDAO(em);
-		usuarioDao.salvar(usu);
+//		UsuarioDAO usuarioDao = new UsuarioDAO(em);
+//		usuarioDao.salvar(usu);
 	}
 }
