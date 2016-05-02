@@ -3,6 +3,8 @@ package br.com.fabricadoprogramador.dao;
 import br.com.fabricadoprogramador.entidade.Usuario;
 import br.com.fabricadoprogramador.exception.DAOException;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
@@ -12,7 +14,6 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import antlr.collections.List;
 
 @Repository // carregado no contexto do spring
 public class UsuarioDAO {
@@ -41,7 +42,7 @@ public class UsuarioDAO {
 																// linguagem
 																// Java para
 																// consulta
-		return (List) q.getResultList(); // retorna o resultado em um lista
+		return (List<Usuario>) q.getResultList(); // retorna o resultado em um lista
 
 	}
 
@@ -61,19 +62,19 @@ public class UsuarioDAO {
 			// 2) Criando objeto de consulta a partir do JPQL, linguagem SQL do
 			// JPA
 			Query consulta = em.createQuery(jpql);
-			// 3) Substituindo o parametro do método String login, pelo
+			// 3) Substituindo o parametro do mï¿½todo String login, pelo
 			// parametro do JPQL :loginParam
 			consulta.setParameter("loginParam", login);
-			// 4) Retornando um único registro como resultado getSingleResult,
+			// 4) Retornando um ï¿½nico registro como resultado getSingleResult,
 			// convertido para Usuario
 
 			return (Usuario) consulta.getSingleResult();
 			
 		} catch (NoResultException e) {
-			// Queremos tratar como Nulo quando o objeto não existir no banco
+			// Queremos tratar como Nulo quando o objeto nï¿½o existir no banco
 			return null;
 		} catch (NonUniqueResultException e) {
-			throw new DAOException("Mais de um usuário encontrado", e);
+			throw new DAOException("Mais de um usuï¿½rio encontrado", e);
 		} catch (Exception e) {
 			// Outra exception ocorreu.
 			throw new DAOException(e);

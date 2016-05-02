@@ -9,4 +9,24 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <listener>
+	<listener-class>
+		org.springframework.web.context.ContextLoaderListener
+	</listener-class>
+</listener>
+
+<!-- Spring ouvindo as requisições, requestes da paginas -->
+<listener>
+	<listener-class>
+		org.springframework.web.context.request.RequestContextListener
+	</listener-class>
+</listener>
+
+<context-param>
+<param-name>contextConfigLocation</param-name>
+<param-value>/WEB-INF/springbeans.xml</param-value>
+</context-param>
+  
+  
 </web-app>

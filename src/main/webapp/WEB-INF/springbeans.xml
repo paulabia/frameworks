@@ -13,6 +13,7 @@
 	<!-- COnfiguração para reconhecimento do spring -->
 	<context:component-scan base-package="br.com.fabricadoprogramador.dao"/>
 	<context:component-scan base-package="br.com.fabricadoprogramador.service"/>
+	<context:component-scan base-package="br.com.fabricadoprogramador.controller"/>
 	
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"> 
 		<property name="entityManagerFactory" ref="entityManagerFactory"></property>
