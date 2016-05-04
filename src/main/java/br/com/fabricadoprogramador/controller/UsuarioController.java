@@ -28,12 +28,19 @@ public class UsuarioController {
 	
 	public void salvar(){
 		try {
-			usuarioService.salvarUsuario(usuario);
-			usuarios.add(usuario);
+			Usuario usuSalvo = usuarioService.salvarUsuario(usuario);
+			usuarios.add(usuSalvo);
+			usuario = new Usuario();
+			
 		} catch (ServiceException | DAOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public void excluir(Usuario usuario){
+		usuarioService.excluirUsuario(usuario);
+		
 	}
 
 	public Usuario getUsuario() {

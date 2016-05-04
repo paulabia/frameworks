@@ -21,19 +21,22 @@ public class UsuarioService {
 		if(usuExistente != null){
 			throw new ServiceException("Usuario ja existe");
 		}
-		usuarioDAO.salvar(usuario);
-		return usuario;
+		Usuario usuSalvo = usuarioDAO.salvar(usuario);
+		return usuSalvo;
 	}
 	
 	public void excluirUsuario(Usuario usuario){
 		if(usuario != null){
-			usuarioDAO.exclui(usuario);
+			try {
+				usuarioDAO.exclui(usuario);
+			} catch (DAOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
 	public List<Usuario> buscarTodos() {
-		return usuarioDAO.buscaTodos();
-		 
+		return usuarioDAO.buscarTodos();
 	}
 	
 }

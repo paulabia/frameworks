@@ -14,7 +14,6 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-
 @Repository // carregado no contexto do spring
 public class UsuarioDAO {
 
@@ -23,13 +22,14 @@ public class UsuarioDAO {
 
 	// Insert ou Update
 	@Transactional
-	public void salvar(Usuario usuario) {
+	public Usuario salvar(Usuario usuario) {
 		// em.getTransaction().begin();
-		em.merge(usuario); // método merge() do entity é inteligente o
+		em.persist(usuario); // método merge() do entity é inteligente o
 							// suficiente para cadastrar um novo ou editar o
 							// usuario
 
 		// em.getTransaction().commit();
+		return usuario;
 	}
 
 	public Usuario buscaPorId(int id) {
@@ -37,7 +37,8 @@ public class UsuarioDAO {
 
 	}
 
-	public List buscaTodos() {
+	@SuppressWarnings("unchecked")
+	public List<Usuario> buscarTodos() {
 		Query q = em.createQuery("select u from Usuario u"); // Consulta JPQL,
 																// linguagem
 																// Java para
@@ -47,10 +48,15 @@ public class UsuarioDAO {
 	}
 
 	@Transactional
-	public void exclui(Usuario usuario) {
-		// em.getTransaction().begin();
-		em.remove(usuario);
-		// em.getTransaction().commit();
+	public void exclui(Usuario usuario) throws DAOException{
+		try{
+			// em.getTransaction().begin();
+			em.remove(usuario);
+			// em.getTransaction().commit()
+		}catch(Exception e){
+			throw new DAOException("Não foi possível excluir!");
+		}
+		
 
 	}
 
@@ -69,7 +75,7 @@ public class UsuarioDAO {
 			// convertido para Usuario
 
 			return (Usuario) consulta.getSingleResult();
-			
+
 		} catch (NoResultException e) {
 			// Queremos tratar como Nulo quando o objeto n�o existir no banco
 			return null;
@@ -79,7 +85,7 @@ public class UsuarioDAO {
 			// Outra exception ocorreu.
 			throw new DAOException(e);
 		}
-		
+
 	}
 
 }
