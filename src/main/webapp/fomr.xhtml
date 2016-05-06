@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<link rel="stylesheet" href="css/formCadastro.css" type="text/css" />
+	<title>Cadastro de Usuários</title>
+</h:head>
+<h:body>
+
+	<div class="formularioUsu">
+
+		<h:form>
+			<h:outputLabel value="Nome:" />
+			<h:inputText value="#{usuController.usuario.nome}" />
+			<h:outputLabel value="Login" />
+			<h:inputText value="#{usuController.usuario.login}" />
+			<h:outputLabel value="Senha" />
+			<h:inputText value="#{usuController.usuario.senha}" />
+			<h:commandButton value="Salvar" actionListener="#{usuController.salvar()}" />
+		</h:form>
+	</div>
+
+<div class="tableUsu">
+	<h:form>
+
+		 <h:dataTable value="#{usuController.usuarios}" var="usu" border="1">
+			<f:facet name="header">Lista de Usuarios</f:facet>
+			<h:column>
+			<f:facet name="header">ID</f:facet>
+			${usu.id}
+			</h:column>
+			
+			<h:column>
+			<f:facet name="header">Nome</f:facet>
+			${usu.nome}
+			</h:column>
+
+			<h:column>
+			<f:facet name="header">Login</f:facet>
+			${usu.login}
+			</h:column>
+			
+			<h:column>
+			<f:facet name="header">Acao</f:facet>
+			<h:commandButton value="excluir" actionListener="#{usuController.excluir(usu)}"/>
+			</h:column>
+
+		</h:dataTable> 
+
+	</h:form>
+</div>
+</h:body>
+</html>

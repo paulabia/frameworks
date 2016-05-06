@@ -24,7 +24,7 @@ public class UsuarioDAO {
 	@Transactional
 	public Usuario salvar(Usuario usuario) {
 		// em.getTransaction().begin();
-		em.persist(usuario); // método merge() do entity é inteligente o
+		usuario = em.merge(usuario); // método merge() do entity é inteligente o
 							// suficiente para cadastrar um novo ou editar o
 							// usuario
 
