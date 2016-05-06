@@ -51,10 +51,11 @@ public class UsuarioDAO {
 	public void exclui(Usuario usuario) throws DAOException{
 		try{
 			// em.getTransaction().begin();
-			em.remove(usuario);
+			Usuario suAExcluir = em.find(Usuario.class, usuario.getId()); 
+			em.remove(suAExcluir);
 			// em.getTransaction().commit()
 		}catch(Exception e){
-			throw new DAOException("Não foi possível excluir!");
+			throw new DAOException(e.getMessage());
 		}
 		
 

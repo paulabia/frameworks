@@ -18,10 +18,13 @@ public class UsuarioService {
 	
 	public Usuario salvarUsuario(Usuario usuario) throws ServiceException, DAOException{
 		Usuario usuExistente = usuarioDAO.buscaLogin(usuario.getLogin());
+		Usuario usuSalvo = null; 
 		if(usuExistente != null){
 			throw new ServiceException("Usuario ja existe");
 		}
-		Usuario usuSalvo = usuarioDAO.salvar(usuario);
+		if( usuario != null){
+			usuSalvo = usuarioDAO.salvar(usuario);	
+		}
 		return usuSalvo;
 	}
 	
@@ -33,6 +36,10 @@ public class UsuarioService {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public void alterarUsuario(){
+		
 	}
 
 	public List<Usuario> buscarTodos() {

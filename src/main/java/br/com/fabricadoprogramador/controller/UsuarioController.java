@@ -12,35 +12,39 @@ import br.com.fabricadoprogramador.exception.DAOException;
 import br.com.fabricadoprogramador.exception.ServiceException;
 import br.com.fabricadoprogramador.service.UsuarioService;
 
-@Controller(value="usuController")
+@Controller(value = "usuController")
 public class UsuarioController {
-	
+
 	@Autowired
 	UsuarioService usuarioService;
-	
+
 	private Usuario usuario = new Usuario();
 	private List<Usuario> usuarios;
-	
+
 	@PostConstruct
-	public void init(){
+	public void init() {
 		setUsuarios(usuarioService.buscarTodos());
+		usuario = new Usuario();
 	}
-	
-	public void salvar(){
+
+	public void salvar() {
 		try {
 			Usuario usuSalvo = usuarioService.salvarUsuario(usuario);
-			usuarios.add(usuSalvo);
-			usuario = new Usuario();
-			
+			init();
+
 		} catch (ServiceException | DAOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
-	public void excluir(Usuario usuario){
-		usuarioService.excluirUsuario(usuario);
-		
+
+	public void excluir(Usuario usu) {
+		usuarioService.excluirUsuario(usu);
+		init();
+	}
+
+	public void alterar(Usuario usuario) {
+
 	}
 
 	public Usuario getUsuario() {
@@ -50,7 +54,7 @@ public class UsuarioController {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
+
 	public List<Usuario> getUsuarios() {
 		return usuarios;
 	}
@@ -58,7 +62,5 @@ public class UsuarioController {
 	public void setUsuarios(List<Usuario> usuarios) {
 		this.usuarios = usuarios;
 	}
-	
-	
 
 }
