@@ -14,6 +14,7 @@
 	<context:component-scan base-package="br.com.fabricadoprogramador.dao"/>
 	<context:component-scan base-package="br.com.fabricadoprogramador.service"/>
 	<context:component-scan base-package="br.com.fabricadoprogramador.controller"/>
+	<context:component-scan base-package="br.com.fabricadoprogramador.converter"/>
 	
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"> 
 		<property name="entityManagerFactory" ref="entityManagerFactory"></property>

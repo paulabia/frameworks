@@ -1,6 +1,5 @@
 package frameworks;
 
-import br.com.fabricadoprogramador.dao.UsuarioDAO;
 import br.com.fabricadoprogramador.entidade.Usuario;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

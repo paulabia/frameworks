@@ -11,6 +11,7 @@ import br.com.fabricadoprogramador.entidade.Usuario;
 import br.com.fabricadoprogramador.exception.DAOException;
 import br.com.fabricadoprogramador.exception.ServiceException;
 import br.com.fabricadoprogramador.service.UsuarioService;
+import br.com.fabricadoprogramador.util.MensagemUtil;
 
 @Controller(value = "usuController")
 public class UsuarioController {
@@ -24,13 +25,16 @@ public class UsuarioController {
 	@PostConstruct
 	public void init() {
 		setUsuarios(usuarioService.buscarTodos());
-		usuario = new Usuario();
 	}
 
 	public void salvar() {
 		try {
+			@SuppressWarnings("unused")
 			Usuario usuSalvo = usuarioService.salvarUsuario(usuario);
 			init();
+			//limpa o form
+			usuario = new Usuario();
+			MensagemUtil.msgInfo("Usuario salvo com sucesso!");
 
 		} catch (ServiceException | DAOException e) {
 			// TODO Auto-generated catch block
@@ -39,12 +43,19 @@ public class UsuarioController {
 	}
 
 	public void excluir(Usuario usu) {
-		usuarioService.excluirUsuario(usu);
-		init();
+		try{
+			usuarioService.excluirUsuario(usu);
+			init();	
+			MensagemUtil.msgInfo("Usuario excluido com sucesso!");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
 	}
 
-	public void alterar(Usuario usuario) {
-
+	public void editar(Usuario usu) {
+		this.usuario = usu;
+		init();
 	}
 
 	public Usuario getUsuario() {

@@ -37,10 +37,6 @@ public class UsuarioService {
 			}
 		}
 	}
-	
-	public void alterarUsuario(){
-		
-	}
 
 	public List<Usuario> buscarTodos() {
 		return usuarioDAO.buscarTodos();

@@ -3,55 +3,104 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<link rel="stylesheet" href="css/formCadastro.css" type="text/css" />
 	<title>Cadastro de Usuários</title>
 </h:head>
 <h:body>
 
-	<div class="formularioUsu">
+	<p:layout style="min-width:400px;">
+		<p:layoutUnit position="west" resizable="true" size="240">
+			<h:form id="formCadastroU" styleClass="formCadastroU">
+			<p:messages />
+				<p:outputLabel value="Perfil:" />
+				<p:selectOneMenu id="perfil" value="#{usuController.usuario.perfil}"
+					converter="#{perfilConverter}">
+					<f:selectItem itemValue="" itemLabel="-- Selecione --" />
+					<f:selectItems value="#{perfilController.perfils}" var="perfil"
+						itemLabel="#{perfil.descricao}" />
+				</p:selectOneMenu>
 
-		<h:form>
-			<h:outputLabel value="Nome:" />
-			<h:inputText value="#{usuController.usuario.nome}" />
-			<h:outputLabel value="Login" />
-			<h:inputText value="#{usuController.usuario.login}" />
-			<h:outputLabel value="Senha" />
-			<h:inputText value="#{usuController.usuario.senha}" />
-			<h:commandButton value="Salvar" actionListener="#{usuController.salvar()}" />
-		</h:form>
-	</div>
+				<p:outputLabel value="Nome:" />
+				<p:inputText value="#{usuController.usuario.nome}" />
+				<p:outputLabel value="Login" />
+				<p:inputText value="#{usuController.usuario.login}" />
+				<p:outputLabel value="Senha" />
+				<p:inputText value="#{usuController.usuario.senha}" />
+				<p:commandButton value="Salvar"
+					actionListener="#{usuController.salvar()}" update=":formUsu" />
+			</h:form>
 
-<div class="tableUsu">
-	<h:form>
+			<p:separator />
 
-		 <h:dataTable value="#{usuController.usuarios}" var="usu" border="1">
-			<f:facet name="header">Lista de Usuarios</f:facet>
-			<h:column>
-			<f:facet name="header">ID</f:facet>
-			${usu.id}
-			</h:column>
-			
-			<h:column>
-			<f:facet name="header">Nome</f:facet>
-			${usu.nome}
-			</h:column>
+			<h:form id="formCadastroP" styleClass="formCadastroP">
+			<p:messages />
+				<p:outputLabel value="Descricao" />
+				<p:inputText value="#{perfilController.perfil.descricao}" />
+				<p:commandButton value="Salvar"
+					actionListener="#{perfilController.salvar()}" update=":formPerfil" />
+			</h:form>
 
-			<h:column>
-			<f:facet name="header">Login</f:facet>
-			${usu.login}
-			</h:column>
-			
-			<h:column>
-			<f:facet name="header">Acao</f:facet>
-			<h:commandButton value="excluir" actionListener="#{usuController.excluir(usu)}"/>
-			</h:column>
+		</p:layoutUnit>
 
-		</h:dataTable> 
+		<p:layoutUnit position="center">
+			<div class="tabela1">
+				<h:form id="formUsu" styleClass="formUsu">
+					<p:dataTable value="#{usuController.usuarios}" var="usu" border="1">
+						<f:facet name="header">Lista de Usuarios</f:facet>
+						<p:column>
+							<f:facet name="header">ID</f:facet>
+						${usu.id}
+						</p:column>
+						<p:column headerText="Perfil">
+						#{usu.perfil.descricao}
+						</p:column>
 
-	</h:form>
-</div>
+						<p:column>
+							<f:facet name="header">Nome</f:facet>
+						${usu.nome}
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">Login</f:facet>
+						${usu.login}
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">Acao</f:facet>
+							<p:commandButton value="editar"
+								actionListener="#{usuController.editar(usu)}" update=":formCadastroU" />
+							<p:commandButton value="excluir"
+								actionListener="#{usuController.excluir(usu)}" update=":formUsu" />
+						</p:column>
+
+					</p:dataTable>
+				</h:form>
+			</div>
+			<p:separator />
+
+			<div class="tabela2">
+				<h:form id="formPerfil" styleClass="formPerfil">
+					<p:dataTable value="#{perfilController.perfils}" var="per" border="1">
+						<f:facet name="header">Lista de Perfil</f:facet>
+						
+						<p:column>
+							<f:facet name="header">Descricao</f:facet>
+							${per.descricao}
+						</p:column>
+						<p:column>
+							<f:facet name="header">Acao</f:facet>
+							<p:commandButton value="editar"
+								actionListener="#{perfilController.editar(per)}" update=":formCadastroP"/>
+							<p:commandButton value="excluir"
+								actionListener="#{perfilController.excluir(per)}" update=":formPerfil" />
+						</p:column>
+					</p:dataTable>
+				</h:form>
+			</div>
+		</p:layoutUnit>
+	</p:layout>
+
 </h:body>
 </html>
