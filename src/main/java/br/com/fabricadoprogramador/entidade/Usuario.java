@@ -37,6 +37,7 @@ public class Usuario implements Serializable{
 	private String nome;
 	private String login;
 	private String senha;
+	private Boolean ativo = true;
 	
 	@ManyToOne(cascade={CascadeType.PERSIST,CascadeType.MERGE})
 	@JoinColumn
@@ -72,6 +73,13 @@ public class Usuario implements Serializable{
 	}
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
+	}
+	
+	public Boolean getAtivo() {
+		return ativo;
+	}
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
 	}
 	@Override
 	public String toString() {
